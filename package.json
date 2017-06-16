@@ -1,7 +1,9 @@
 {
   "scripts": {
-    "start": "wrollup --config",
+    "start": "npm-run-all --parallel compile-watch build-watch",
     "test": "eslint --cache --ext .js --ext .jsx *.js views && echo ✓",
+    "build-watch": "nodemon -w dist/bundle.js -x 'src/index.js > index.html'",
+    "compile-watch": "wrollup --config",
     "compile": "rollup --config"
   },
   "babel": {
@@ -20,6 +22,8 @@
   "dependencies": {},
   "devDependencies": {
     "complate-jsx": "^0.6.0",
-    "complate-stream": "^0.9.3"
+    "complate-stream": "^0.9.3",
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.2"
   }
 }
