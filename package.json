@@ -1,29 +1,23 @@
 {
+  "name": "complate-ssg",
+  "version": "0.8.0",
+  "description": "static-site generator for complate",
+  "author": "FND",
+  "license": " Apache-2.0",
+  "homepage": "https://github.com/complate/complate-ssg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/complate/complate-ssg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/complate/complate-ssg/issues"
+  },
+  "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel compile-watch build-watch",
-    "test": "eslint --cache --ext .js --ext .jsx *.js views && echo ✓",
-    "build-watch": "nodemon -w dist/bundle.js -x 'src/index.js > index.html'",
-    "compile-watch": "wrollup --config",
-    "compile": "rollup --config"
+    "test": "eslint --cache *.js samples && echo ✓"
   },
-  "babel": {
-    "presets": [
-      "es2015-rollup"
-    ],
-    "plugins": [
-      [
-        "transform-react-jsx",
-        {
-          "pragma": "createElement"
-        }
-      ]
-    ]
-  },
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "complate-jsx": "^0.6.0",
-    "complate-stream": "^0.9.3",
-    "nodemon": "^1.11.0",
-    "npm-run-all": "^4.0.2"
+    "complate-stream": "^0.9.3"
   }
 }
