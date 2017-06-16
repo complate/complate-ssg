@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "start": "wrollup --config",
+    "test": "eslint --cache --ext .js --ext .jsx *.js views && echo ✓",
+    "compile": "rollup --config"
+  },
+  "babel": {
+    "presets": [
+      "es2015-rollup"
+    ],
+    "plugins": [
+      [
+        "transform-react-jsx",
+        {
+          "pragma": "createElement"
+        }
+      ]
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "complate-jsx": "^0.6.0",
+    "complate-stream": "^0.9.3"
+  }
+}
