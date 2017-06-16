@@ -2,7 +2,7 @@
   "scripts": {
     "start": "npm-run-all --parallel compile-watch build-watch",
     "test": "eslint --cache --ext .js --ext .jsx *.js views && echo ✓",
-    "build-watch": "nodemon -w dist/bundle.js -x ./index.js",
+    "build-watch": "nodemon -w dist/bundle.js -x 'node ./index.js'",
     "build": "./index.js",
     "compile-watch": "wrollup --config",
     "compile": "rollup --config"
@@ -21,6 +21,8 @@
     ]
   },
   "dependencies": {
-    "complate-ssg": "^0.8.0"
+    "complate-ssg": "^0.8.0",
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.2"
   }
 }
