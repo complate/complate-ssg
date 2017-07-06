@@ -1,6 +1,6 @@
 {
   "name": "complate-ssg",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "static-site generator for complate",
   "author": "FND",
   "license": " Apache-2.0",
@@ -17,7 +17,7 @@
     "test": "eslint --cache *.js samples && echo ✓"
   },
   "dependencies": {
-    "complate-jsx": "^0.6.0",
-    "complate-stream": "^0.9.3"
+    "complate-jsx": "^0.7",
+    "complate-stream": "^0.9"
   }
 }
