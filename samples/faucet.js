@@ -3,7 +3,6 @@ let config = {
 	manifest: false,
 	bundles: [{
 		entryPoint: "./views/bundle.js",
-		extensions: [".jsx"],
 		format: "cjs",
 		moduleName: "render",
 		transpiler: {
