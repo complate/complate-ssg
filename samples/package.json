@@ -3,22 +3,9 @@
     "start": "npm-run-all --parallel compile-watch build-watch",
     "test": "eslint --cache --ext .js --ext .jsx *.js views && echo ✓",
     "build-watch": "nodemon -w dist/bundle.js -x 'node ./index.js'",
-    "build": "./index.js",
-    "compile-watch": "wrollup --config",
-    "compile": "rollup --config"
-  },
-  "babel": {
-    "presets": [
-      "es2015-rollup"
-    ],
-    "plugins": [
-      [
-        "transform-react-jsx",
-        {
-          "pragma": "createElement"
-        }
-      ]
-    ]
+    "build": "node ./index.js",
+    "compile-watch": "npm run compile -- --watch",
+    "compile": "faucet-js --no-fingerprint --compact"
   },
   "dependencies": {
     "complate-ssg": "^0.8.0",
