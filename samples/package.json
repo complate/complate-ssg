@@ -5,7 +5,7 @@
     "build-watch": "nodemon -w dist/bundle.js -x 'node ./index.js'",
     "build": "node ./index.js",
     "compile-watch": "npm run compile -- --watch",
-    "compile": "faucet-js --no-fingerprint --compact"
+    "compile": "faucet --no-fingerprint --compact"
   },
   "dependencies": {
     "complate-ssg": "^0.8.0",
