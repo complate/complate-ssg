@@ -3,7 +3,7 @@
 	"version": "0.8.4",
 	"description": "static-site generator for complate",
 	"author": "FND",
-	"license": " Apache-2.0",
+	"license": "Apache-2.0",
 	"homepage": "https://github.com/complate/complate-ssg",
 	"repository": {
 		"type": "git",
@@ -19,5 +19,8 @@
 	"dependencies": {
 		"complate-jsx": "^0.7",
 		"complate-stream": "^0.9"
+	},
+	"devDependencies": {
+		"release-util-fnd": "^1.0.0"
 	}
 }
