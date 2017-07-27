@@ -8,7 +8,7 @@
 		"compile": "faucet --no-fingerprint --compact"
 	},
 	"dependencies": {
-		"complate-ssg": "^0.8.0",
+		"complate-ssg": "^0.9.0",
 		"nodemon": "^1.11.0",
 		"npm-run-all": "^4.0.2"
 	}

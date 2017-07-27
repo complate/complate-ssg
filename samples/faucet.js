@@ -1,8 +1,8 @@
 let config = {
-	targetDir: "dist",
 	manifest: false,
 	bundles: [{
-		entryPoint: "./views/bundle.js",
+		entryPoint: "./views/index.jsx",
+		target: "./dist/bundle.js",
 		format: "cjs",
 		moduleName: "render",
 		transpiler: {
