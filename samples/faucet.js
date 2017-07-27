@@ -7,9 +7,7 @@ let config = {
 		moduleName: "render",
 		transpiler: {
 			features: ["es2015", "jsx"],
-			jsx: {
-				"pragma": "createElement"
-			}
+			jsx: { pragma: "createElement" }
 		}
 	}]
 };
