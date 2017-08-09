@@ -10,8 +10,9 @@ module.exports = function generatePage(filepath, entryPoint, data) {
 	console.log(`generating \`${filepath}\`...`); // eslint-disable-line no-console
 
 	let fh = new WritableStream(filepath);
-	render(fh, entryPoint, data);
-	fh.close();
+	render(fh, entryPoint, data, _ => {
+		fh.close();
+	});
 };
 
 class WritableStream {
