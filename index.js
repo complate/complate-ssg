@@ -5,12 +5,12 @@ let path = require("path");
 
 let render = require(path.resolve("./dist/bundle.js")); // TODO: configurable
 
-module.exports = function generatePage(filepath, entryPoint, data) {
+module.exports = function generatePage(filepath, view, data) {
 	filepath = path.resolve(filepath);
 	console.log(`generating \`${filepath}\`...`); // eslint-disable-line no-console
 
 	let fh = new WritableStream(filepath);
-	render(fh, entryPoint, data, _ => {
+	render(view, data, fh, false, _ => {
 		fh.close();
 	});
 };

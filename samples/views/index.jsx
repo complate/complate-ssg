@@ -1,20 +1,24 @@
-import renderer, { registerMacro, createElement } from "complate-stream";
+import renderer, { createElement } from "complate-stream";
 
-registerMacro("site-index", ({ title }) => {
-	return <default-layout title={title}>
+let { renderView, registerView } = renderer("<!DOCTYPE html>");
+
+export default renderView;
+
+registerView(function SiteIndex({ title }) {
+	return <DefaultLayout title={title}>
 		<h1>{title}</h1>
-	</default-layout>;
+	</DefaultLayout>;
 });
 
-registerMacro("default-layout", (params, ...children) => <html>
-	<head>
-		<meta charset="utf-8" />
-		<title>{params.title}</title>
-	</head>
+function DefaultLayout({ title }, ...children) {
+	return <html>
+		<head>
+			<meta charset="utf-8" />
+			<title>{title}</title>
+		</head>
 
-	<body>
-		{children}
-	</body>
-</html>);
-
-export default renderer("<!DOCTYPE html>");
+		<body>
+			{children}
+		</body>
+	</html>;
+}
