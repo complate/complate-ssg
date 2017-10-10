@@ -1,10 +1,10 @@
-import renderer, { createElement } from "complate-stream";
+import Renderer, { createElement } from "complate-stream";
 
-let { renderView, registerView } = renderer("<!DOCTYPE html>");
+let renderer = new Renderer("<!DOCTYPE html>");
 
-export default renderView;
+export default renderer.renderView.bind(renderer);
 
-registerView(function SiteIndex({ title }) {
+renderer.registerView(function SiteIndex({ title }) {
 	return <DefaultLayout title={title}>
 		<h1>{title}</h1>
 	</DefaultLayout>;
