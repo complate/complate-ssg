@@ -3,12 +3,12 @@
 let fs = require("fs");
 let path = require("path");
 
-module.exports = (rootDir, bundlePath) => {
+module.exports = (rootDir, bundlePath, { targetDir = rootDir } = {}) => {
 	bundlePath = path.resolve(rootDir, bundlePath);
 	let render = require(bundlePath);
 
 	return function generatePage(filepath, view, params) {
-		filepath = path.resolve(rootDir, filepath);
+		filepath = path.resolve(targetDir, filepath);
 		console.error(`generating \`${path.relative(rootDir, filepath)}\`...`);
 
 		let fh = new WritableStream(filepath);
