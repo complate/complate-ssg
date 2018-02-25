@@ -1,10 +1,14 @@
 "use strict";
 
+let mkdirp = require("mkdirp");
 let fs = require("fs");
 let path = require("path");
 
-module.exports = (rootDir, bundlePath, { targetDir = rootDir } = {}) => {
+module.exports = (rootDir, bundlePath, { targetDir } = {}) => {
 	bundlePath = path.resolve(rootDir, bundlePath);
+	targetDir = targetDir === undefined ? rootDir : path.resolve(rootDir, targetDir);
+
+	mkdirp.sync(targetDir);
 	let render = require(bundlePath);
 
 	return function generatePage(filepath, view, params) {
