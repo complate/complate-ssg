@@ -1,6 +1,6 @@
 {
 	"name": "complate-ssg",
-	"version": "0.14.0",
+	"version": "0.15.0",
 	"description": "static-site generator for complate",
 	"author": "FND",
 	"license": "Apache-2.0",
@@ -18,10 +18,10 @@
 	},
 	"dependencies": {
 		"complate-stream": "0.x",
-		"faucet-pipeline-jsx": "^0.10.1"
+		"faucet-pipeline-jsx": "~1.0.0-beta.1"
 	},
 	"devDependencies": {
-		"eslint-config-fnd-jsx": "^1.1.0",
-		"release-util-fnd": "^1.0.7"
+		"eslint-config-fnd-jsx": "^1.3.0",
+		"release-util-fnd": "^1.1.0"
 	}
 }
