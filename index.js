@@ -3,16 +3,19 @@
 let fs = require("fs");
 let path = require("path");
 
-let render = require(path.resolve("./dist/bundle.js")); // TODO: configurable
+module.exports = (rootDir, bundlePath) => {
+	bundlePath = path.resolve(rootDir, bundlePath);
+	let render = require(bundlePath);
 
-module.exports = function generatePage(filepath, view, data) {
-	filepath = path.resolve(filepath);
-	console.log(`generating \`${filepath}\`...`); // eslint-disable-line no-console
+	return function generatePage(filepath, view, params) {
+		filepath = path.resolve(rootDir, filepath);
+		console.error(`generating \`${path.relative(rootDir, filepath)}\`...`);
 
-	let fh = new WritableStream(filepath);
-	render(view, data, fh, { fragment: false }, _ => {
-		fh.close();
-	});
+		let fh = new WritableStream(filepath);
+		render(view, params, fh, { fragment: false }, _ => {
+			fh.close();
+		});
+	};
 };
 
 class WritableStream {

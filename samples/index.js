@@ -1,5 +1,7 @@
 "use strict";
 
-let generate = require("complate-ssg");
+let generator = require("complate-ssg");
 
-generate("index.html", "SiteIndex", { title: "Hello World" });
+let generatePage = generator(__dirname, "./dist/views.js");
+
+generatePage("index.html", "SiteIndex", { title: "Hello World" });
