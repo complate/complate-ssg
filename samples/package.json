@@ -1,17 +1,15 @@
 {
 	"scripts": {
-		"start": "npm-run-all --parallel compile:watch build:watch",
-		"test": "eslint --cache --ext .js --ext .jsx *.js views && echo ✓",
-		"build:watch": "nodemon -w dist/views.js -x 'node ./index.js'",
-		"build": "node ./index.js",
-		"compile:watch": "npm run compile -- --watch",
-		"compile": "faucet --compact"
+		"start": "npm-run-all compile --parallel compile:watch build:watch",
+		"build": "complate-ssg",
+		"build:watch": "nodemon -w dist/views.js -x 'npm run build' < /dev/null",
+		"compile": "faucet --compact",
+		"compile:watch": "npm run compile -- --watch"
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"complate-ssg": "^0.16.0",
-		"eslint-config-fnd-jsx": "^1.3.0",
-		"nodemon": "^1.15.1",
+		"complate-ssg": "^0.17.0",
+		"nodemon": "^1.17.3",
 		"npm-run-all": "^4.1.2"
 	}
 }

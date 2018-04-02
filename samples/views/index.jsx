@@ -1,14 +1,16 @@
-import Renderer, { createElement } from "complate-stream";
+import Renderer, { createElement, safe } from "complate-stream";
 
-let renderer = new Renderer();
+let { registerView, renderView } = new Renderer();
 
-export default renderer.renderView;
+registerView(render);
 
-renderer.registerView(function SiteIndex({ title }) {
-	return <DefaultLayout title={title}>
-		<h1>{title}</h1>
+export default renderView;
+
+function render({ slug, meta, html }) {
+	return <DefaultLayout title={meta.title}>
+		{safe(html)}
 	</DefaultLayout>;
-});
+}
 
 function DefaultLayout({ title }, ...children) {
 	return <html>
