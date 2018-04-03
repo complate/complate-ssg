@@ -2,7 +2,7 @@
 	"scripts": {
 		"start": "npm-run-all compile --parallel compile:watch build:watch",
 		"build": "complate-ssg",
-		"build:watch": "nodemon -w dist/views.js -x 'npm run build' < /dev/null",
+		"build:watch": "nodemon -w ./dist/views.js -w content -e md -x 'npm run build' < /dev/null",
 		"compile": "faucet --compact",
 		"compile:watch": "npm run compile -- --watch"
 	},
