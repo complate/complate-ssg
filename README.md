@@ -28,8 +28,8 @@ directory, resulting HTML files will be created in the target directory.
 The easiest way is to start from the samples (e.g. by copying
 `node_modules/complate-ssg/samples`):
 
-* complate is used to generate a views bundle for rendering HTML – we recommend
-  using [faucet-pipeline](http://faucet-pipeline.org) to compile JSX
+* complate is used to generate a views bundle for rendering HTML – typically
+  with [faucet-pipeline](http://faucet-pipeline.org) compiling JSX
 * complate-ssg uses these views to generate HTML pages from Markdown files
 
 
@@ -53,6 +53,54 @@ lorem ipsum
 
 dolor sit amet
 ```
+
+
+Views
+-----
+
+HTML is rendered using complate views:
+
+```jsx
+function render({ slug, metadata, html }) {
+    return <DefaultLayout title={meta.title}>
+        {safe(html)}
+    </DefaultLayout>;
+}
+
+function DefaultLayout({ title }, ...children) {
+    return <html>
+        <head>
+            <meta charset="utf-8" />
+            <title>{title}</title>
+        </head>
+
+        <body>
+            {children}
+        </body>
+    </html>;
+}
+```
+
+The `render` function serves as the entry point for all pages; it might render
+different layouts based on `slug`, which is passed in alongside source contents'
+`metadata` and `html`.
+
+Next we need to register that `render` function and allow complate-ssg to invoke
+it via `renderView`:
+
+```jsx
+import Renderer, { createElement, safe } from "complate-stream";
+
+let { registerView, renderView } = new Renderer();
+
+registerView(render);
+
+export default renderView;
+```
+
+Finally, we need to compile our JSX views to a bundle (`dist/views.js` by
+default), e.g. using [faucet-pipeline](http://faucet-pipeline.org) – see the
+`samples` directory for details.
 
 
 Customization
@@ -116,7 +164,7 @@ options.transforms = {
 };
 ```
 
-Here's a list of complate-ssg's default values for reference:
+Here's an approximation of complate-ssg's default values for reference:
 
 ```javascript
 let referenceDir = process.cwd();
