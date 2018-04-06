@@ -10,7 +10,7 @@ let path = require("path");
 let readDir = promisify(fs.readdir);
 let mkdir = promisify(mkdirp);
 
-module.exports = function generatePages(referenceDir, config) {
+module.exports = function generatePages(referenceDir = process.cwd(), config) {
 	let {
 		content = DEF.contentDir,
 		views = DEF.bundle,
@@ -31,10 +31,11 @@ module.exports = function generatePages(referenceDir, config) {
 		then(_ => readDir(contentDir)).
 		then(filenames => {
 			let pages = makePages(filenames, contentDir, referenceDir, transforms);
+			let pageIndex = new Set(pages.map(page => page.target));
 
 			let render = require(bundle);
 			pages.forEach(page => {
-				page.render(targetDir, views.name, render);
+				page.render(targetDir, views.name, render, pageIndex);
 			});
 		});
 };
@@ -46,7 +47,7 @@ function makePages(filenames, contentDir, referenceDir, transforms) {
 		let transform = extension && transforms[extension];
 		if(transform) { // ignore unknown files
 			let filepath = path.resolve(contentDir, filename);
-			let page = new Page(filepath, extension, referenceDir, transform);
+			let page = new Page(filepath, filename, extension, referenceDir, transform);
 			memo.push(page);
 		}
 		return memo;

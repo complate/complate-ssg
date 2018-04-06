@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
 
-let ssg = require("../src");
+let ssg = require("../src/index");
 let parseCLI = require("../src/cli");
 
 let { referenceDir, contentDir, targetDir, views } = parseCLI();

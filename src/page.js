@@ -6,24 +6,26 @@ let colonParse = require("metacolon");
 let path = require("path");
 
 module.exports = class Page {
-	constructor(filepath, extension, referenceDir, transform) {
-		this.filepath = filepath;
-		this.extension = extension;
+	constructor(filepath, filename, extension, referenceDir, transform) {
+		this.source = filepath;
+		this.slug = filename.substr(0, filename.length - extension.length - 1);
+		this.target = `${this.slug}.html`; // NB: name only, without path
 		this.referenceDir = referenceDir;
 		this.transform = transform;
 	}
 
 	// writes HTML to disk via complate rendering
-	render(targetDir, viewName, render) {
-		this.parse().
+	render(targetDir, viewName, render, pageIndex) {
+		this.parse(pageIndex).
 			then(page => {
-				let filepath = path.resolve(targetDir, `${page.slug}.html`);
+				let filepath = path.resolve(targetDir, this.target);
 				let relPath = path.relative(this.referenceDir, filepath);
 				console.error(`generating ${repr(relPath)}...`);
 
+				let params = Object.assign({}, page, { slug: this.slug });
 				let stream = new File(filepath);
 				return new Promise(resolve => {
-					render(viewName, page, stream, { fragment: false }, _ => {
+					render(viewName, params, stream, { fragment: false }, _ => {
 						stream.close();
 						resolve();
 					});
@@ -31,14 +33,11 @@ module.exports = class Page {
 			});
 	}
 
-	parse() {
-		let { filepath } = this;
-		let filename = path.basename(filepath);
-		return colonParse(filepath).
+	parse(pageIndex) {
+		return colonParse(this.source).
 			then(({ headers, body }) => ({
-				slug: filename.substr(0, filename.length - this.extension.length - 1),
 				meta: headers,
-				html: this.transform(body, headers)
+				html: this.transform(body, headers, pageIndex)
 			}));
 	}
 };
