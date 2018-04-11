@@ -5,8 +5,8 @@ module.exports = {
 		source: "./views/index.jsx",
 		target: "./dist/views.js",
 		fingerprint: false,
-		format: "cjs",
-		moduleName: "render",
+		format: "CommonJS",
+		exports: "render",
 		jsx: { pragma: "createElement" }
 	}]
 };
