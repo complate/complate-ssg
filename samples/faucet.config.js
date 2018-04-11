@@ -6,7 +6,6 @@ module.exports = {
 		target: "./dist/views.js",
 		fingerprint: false,
 		format: "CommonJS",
-		exports: "render",
 		jsx: { pragma: "createElement" }
 	}]
 };
