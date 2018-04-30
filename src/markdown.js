@@ -3,7 +3,7 @@
 let commonmark = require("commonmark");
 
 module.exports = function renderMarkdown(txt,
-		{ safe = true, smart = true, resolveURI }) {
+		{ safe = true, smart = true, resolveURI } = {}) {
 	let reader = new commonmark.Parser({ smart });
 	let parsed = reader.parse(txt);
 	if(resolveURI) {
