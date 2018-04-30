@@ -29,6 +29,12 @@ module.exports = function generatePages(referenceDir = process.cwd(), config) {
 
 	mkdir(targetDir).
 		then(_ => readDir(contentDir)).
+		catch(err => {
+			if(err.code !== "ENOENT") {
+				throw err;
+			}
+			abort(`ERROR: ${repr(contentDir)} does not exist - aborting`);
+		}).
 		then(filenames => {
 			let pages = makePages(filenames, contentDir, referenceDir, transforms);
 			let pageIndex = new Set(pages.map(page => page.target));
@@ -37,6 +43,9 @@ module.exports = function generatePages(referenceDir = process.cwd(), config) {
 			pages.forEach(page => {
 				page.render(targetDir, views.name, render, pageIndex);
 			});
+		}).
+		catch(err => {
+			abort(`${err} - aborting`);
 		});
 };
 
