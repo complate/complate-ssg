@@ -17,7 +17,7 @@
 		"complate-ssg": "bin/complate-ssg"
 	},
 	"scripts": {
-		"test": "eslint --cache --ext .js --ext .jsx *.js src samples && echo ✓"
+		"test": "eslint --cache --ext .js --ext .jsx src samples && echo ✓"
 	},
 	"dependencies": {
 		"complate-stream": "0.x",
@@ -26,10 +26,10 @@
 	},
 	"optionalDependencies": {
 		"commonmark": "^0.28.1",
-		"faucet-pipeline-jsx": "~1.0.0-rc.5"
+		"faucet-pipeline-jsx": "~1.0.0-rc.9"
 	},
 	"devDependencies": {
-		"eslint-config-fnd-jsx": "^1.3.0",
+		"eslint-config-fnd-jsx": "^1.6.0",
 		"release-util-fnd": "^1.1.1"
 	}
 }
