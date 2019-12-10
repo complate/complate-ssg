@@ -5,5 +5,8 @@ exports.bundle = "./dist/views.js";
 exports.viewName = "render";
 exports.targetDir = "./dist/site";
 exports.transforms = {
-	md: (txt, { safe, smart }) => require("./markdown")(txt, { safe: safe !== "false", smart })
+	md: (txt, { safe, smart }) => require("./markdown")(txt, {
+		safe: safe !== "false",
+		smart: smart !== "false"
+	})
 };
